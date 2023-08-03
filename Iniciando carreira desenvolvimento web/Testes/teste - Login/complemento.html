@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Cadastro e Login</title>
+</head>
+<body>
+    <a href="teste.html">Cadastra-se</a>
+
+    <h2>Login</h2>
+    <label for="loginUsername">Usuário:</label>
+    <input type="text" id="loginUsername" required>
+    <br>
+    <label for="loginPassword">Senha:</label>
+    <input type="password" id="loginPassword" required>
+    <br>
+    <button onclick="fazerLogin()">Login</button>
+
+    <script>
+
+        function fazerLogin() {
+            const loginUsername = document.getElementById("loginUsername").value;
+            const loginPassword = document.getElementById("loginPassword").value;
+
+            const storedData = localStorage.getItem("userData");
+            if (!storedData) {
+                alert("Nenhum usuário cadastrado. Faça o cadastro primeiro.");
+                return;
+            }
+
+            const userData = JSON.parse(storedData);
+            if (loginUsername === userData.username && loginPassword === userData.password) {
+                alert("Logou!");
+            } else {
+                alert("Dados de login incorretos. Tente novamente.");
+            }
+        }
+    </script>
+</body>
+</html>
