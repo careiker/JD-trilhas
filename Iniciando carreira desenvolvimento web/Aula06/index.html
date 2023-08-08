@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Cadastro e Login</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+    <h2>Cadastro</h2>
+        <label for="username">Usuário:</label>
+                <input type="text" id="username" required>
+                <br>
+            <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+            <br>
+        <button onclick="salvarDados()">Salvar</button>
+
+        <h2>Login</h2>
+            <label for="loginUsername">Usuário:</label>
+                <input type="text" id="loginUsername" required>
+                <br>
+            <label for="loginPassword">Senha:</label>
+                <input type="password" id="loginPassword" required>
+                <br>
+            <button onclick="fazerLogin()">Login</button>
+
+    <script>
+        function salvarDados() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const data = {
+                username: username,
+                password: password
+            };
+
+            localStorage.setItem("userData", JSON.stringify(data));
+            alert("Dados salvos com sucesso!");
+        }
+
+        function fazerLogin() {
+            const loginUsername = document.getElementById("loginUsername").value;
+            const loginPassword = document.getElementById("loginPassword").value;
+
+            const storedData = localStorage.getItem("userData");
+            if (!storedData) {
+                alert("Nenhum usuário cadastrado. Faça o cadastro primeiro.");
+                return;
+            }
+
+            const userData = JSON.parse(storedData);
+            if (loginUsername === userData.username && loginPassword === userData.password) {
+                alert("Logou!");
+            } else {
+                alert("Dados de login incorretos. Tente novamente.");
+            }
+            console.log(loginUsername);
+            console.log(loginPassword);
+        }
+    </script>
+
